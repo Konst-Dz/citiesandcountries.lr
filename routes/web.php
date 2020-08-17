@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MakerController@all');
+Route::get('/{country}', 'CountryController@show');
+Route::get('/{country}/{city}', 'CityController@show');
+Route::get('/{country}/{city}/{showplace}', 'ShowplaceController@show');
