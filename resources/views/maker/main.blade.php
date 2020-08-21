@@ -9,5 +9,6 @@
             <a href="/{{$value->slug}}/">{{$value->name}}</a><br>
 
         @endforeach
+        {{ $country->appends(['sort' => 'votes'])->fragment('foo')->links() }}
     </section>
 @endsection

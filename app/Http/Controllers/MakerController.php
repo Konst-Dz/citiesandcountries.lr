@@ -9,7 +9,8 @@ class MakerController extends Controller
 {
     public function all()
     {
-        $countries = Country::all();
+        $countries = Country::paginate(2);
+        //$countries->setPath('ex/amp');
         return view('maker.main',['country' =>$countries]);
     }
 }
