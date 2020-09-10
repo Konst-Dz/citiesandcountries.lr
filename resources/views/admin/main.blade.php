@@ -15,8 +15,16 @@
                          <td>{{ $show->desc }}</td>
                         <td>{{ $item->name }}</td>
                           <td>{{$value->name}}</td>
-                        <td><a href="/admin/edit/{{$show->id}}">Редактировать</a></td>
-                        <td><a href="/admin/delete/{{$show->id}}">Удалить</a></td>
+                        <td><a href={{ url('admin/edit/'.$show->id) }}>{{ __('messages.edit') }}</a></td>
+                        <td>
+                            <form action="admin\delete\{{$show->id}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" id="delete-post-{{ $show->id }}" class="btn btn-danger">
+                                    <i class="fa fa-btn fa-trash"></i>{{ $destroy }}
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 @endforeach

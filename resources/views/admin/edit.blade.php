@@ -1,6 +1,6 @@
 
 <form action="" method="post">
-    {{csrf_field()}}
+    @csrf
     <input type="text" name="country" value="{{$city->country->name}}">Страна<br>
     <input type="text" name="slugCountry"value="{{$city->country->slug}}">Country Slug<br>
     <input type="text" name="city" value="{{$item->city->name}}">Город<br>

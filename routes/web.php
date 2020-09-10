@@ -12,12 +12,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('admin', 'AdminController@main')->name('main');
-Route::get('admin/delete/{id}', 'AdminController@delete');
-Route::match(['get','post'],'admin/edit/{id}', 'AdminController@edit');
-Route::match(['get','post'],'admin/add', 'AdminController@add');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('check.admin')->prefix('admin')->group(function (){
+    Route::get('/', 'AdminController@main')->name('main');
+    Route::delete('delete/{id}', 'AdminController@delete');
+    Route::match(['get','post'],'edit/{id}', 'AdminController@edit');
+    Route::get('add', 'AdminController@showAdd')->name('showAdd');
+    Route::post('add', 'AdminController@add');
+});
+
 Route::get('/', 'MakerController@all');
 Route::get('/{country}', 'CountryController@show');
 Route::get('/{country}/{city}', 'CityController@show');
 Route::get('/{country}/{city}/{showplace}', 'ShowplaceController@show');
+
+
 
